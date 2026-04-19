@@ -1,0 +1,112 @@
+/* ==========================================================================
+   About Page Layout
+   ========================================================================== */
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+.about-container section {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about-container section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ==========================================================================
+   Typography & Elements
+   ========================================================================== */
+.about-container h2 {
+  font-size: var(--font-size-xl);
+  color: var(--text-heading);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.about-container p {
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-md);
+}
+
+.about-container ul {
+  list-style-type: none; /* Removes default bullets for a cleaner look */
+  padding-left: 0;
+  margin-bottom: var(--space-md);
+}
+
+.about-container li {
+  position: relative;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg);
+  font-size: var(--font-size-md);
+}
+
+/* Custom modern bullet points */
+.about-container li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-brand-primary);
+}
+
+/* ==========================================================================
+   Special Sections
+   ========================================================================== */
+/* Makes the mission statement slightly larger and more impactful */
+.mission p {
+  font-size: var(--font-size-lg);
+  color: var(--text-heading);
+  font-weight: 400;
+}
+
+/* Highlights the Institutional Framework in its own card */
+.institutional-framework {
+  background-color: var(--bg-surface);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle) !important;
+  margin-top: var(--space-xl);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-lg);
+  margin-top: var(--space-md);
+  border: 2px solid var(--color-brand-primary);
+  background-color: transparent;
+  color: var(--color-brand-primary);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--color-brand-primary);
+  color: var(--text-on-primary);
+  transform: translateY(-2px);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}

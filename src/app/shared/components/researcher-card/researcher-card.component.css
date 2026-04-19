@@ -1,0 +1,105 @@
+:host {
+  display: block; /* Ensures the component takes up its own block space */
+  margin-bottom: var(--space-lg); /* Add some space below each card */
+  height: 100%;
+}
+
+.researcher-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden; /* Ensures rounded corners apply to children */
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+  height: 100%; /* Make cards fill available height in a grid */
+}
+
+.researcher-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.avatar-wrapper {
+  width: 100%;
+  height: 200px; /* Fixed height for the image container */
+  background-color: var(--color-neutral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  display: block;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: var(--color-brand-primary);
+  color: var(--text-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-content {
+  padding: var(--space-lg);
+  flex-grow: 1; /* Allows content to take up available space */
+}
+
+.name-link {
+  text-decoration: none;
+}
+
+.name-link:hover .name {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.name {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  color: var(--text-heading);
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-size: var(--font-size-base);
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.discipline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.tag {
+  background-color: var(--color-neutral-100);
+  color: var(--text-main);
+  font-size: var(--font-size-sm);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  white-space: nowrap; /* Prevent tags from breaking lines */
+}
+
+@media (max-width: 768px) {
+  .researcher-card {
+    width: 100%;
+  }
+}

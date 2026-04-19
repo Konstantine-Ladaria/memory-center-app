@@ -1,0 +1,91 @@
+.main-footer {
+  background-color: var(--color-neutral-100);
+  color: var(--text-muted);
+  padding: var(--space-xl) var(--space-2xl);
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--font-size-sm);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.institutional-tie {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.iliauni-logo {
+  max-width: 150px; /* Adjust as needed for your logo size */
+  margin-bottom: var(--space-md);
+}
+
+.institutional-tie p {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+}
+
+.contact-info h4 {
+  color: var(--text-heading);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-base);
+}
+
+.contact-info p,
+.contact-info address {
+  margin-bottom: var(--space-sm);
+}
+
+.contact-info a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.social-links {
+  margin-top: var(--space-md);
+}
+
+.social-links a {
+  margin-right: var(--space-md);
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: var(--link-color);
+}
+
+.copyright {
+  text-align: right;
+}
+
+.copyright p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .institutional-tie,
+  .contact-info,
+  .copyright {
+    align-items: center;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}

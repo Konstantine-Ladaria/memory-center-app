@@ -1,0 +1,35 @@
+<div class="about-container">
+  <section class="mission">
+    <h2>{{ 'ABOUT.MISSION.TITLE' | translate }}</h2>
+    <p>{{ 'ABOUT.MISSION.PARAGRAPH_1' | translate }}</p>
+    <p>{{ 'ABOUT.MISSION.PARAGRAPH_2' | translate }}</p>
+  </section>
+
+  <section class="goals">
+    <h2>{{ 'ABOUT.GOALS.TITLE' | translate }}</h2>
+    <ul>
+      <li>{{ 'ABOUT.GOALS.ITEM_1' | translate }}</li>
+      <li>{{ 'ABOUT.GOALS.ITEM_2' | translate }}</li>
+      <li>{{ 'ABOUT.GOALS.ITEM_3' | translate }}</li>
+      <li>{{ 'ABOUT.GOALS.ITEM_4' | translate }}</li>
+    </ul>
+  </section>
+
+  <section class="activities">
+    <h2>{{ 'ABOUT.ACTIVITIES.TITLE' | translate }}</h2>
+    <ul>
+      <li>{{ 'ABOUT.ACTIVITIES.ITEM_1' | translate }}</li>
+      <li>{{ 'ABOUT.ACTIVITIES.ITEM_2' | translate }}</li>
+      <li>{{ 'ABOUT.ACTIVITIES.ITEM_3' | translate }}</li>
+    </ul>
+  </section>
+
+  <section class="institutional-framework">
+    <h2>{{ 'ABOUT.AFFILIATION.TITLE' | translate }}</h2>
+    <p [innerHTML]="'ABOUT.AFFILIATION.DESCRIPTION' | translate"></p>
+
+    <a href="https://iliauni.edu.ge/" target="_blank" rel="noopener" class="btn-outline">
+      {{ 'ABOUT.AFFILIATION.VISIT_BTN' | translate }} &rarr;
+    </a>
+  </section>
+</div>

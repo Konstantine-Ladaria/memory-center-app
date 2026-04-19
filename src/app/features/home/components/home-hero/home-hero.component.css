@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Hero Section Layout
+   ========================================================================== */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Uses your largest spacing variables to create a breathable, grand feel */
+  padding: var(--space-2xl) var(--space-md);
+  min-height: 50vh;
+
+  /* Inherits surface styling so it perfectly respects light/dark mode */
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition-theme);
+}
+
+.hero-content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+.brand-link {
+  text-decoration: none;
+  margin-bottom: var(--space-sm);
+}
+
+.brand-title {
+  display: block;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  color: var(--color-brand-accent); /* Uses your Crimson red to draw the eye */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: pre-wrap;
+  line-height: 1.2;
+}
+
+.hero-headline {
+  /* Scales up your 2xl variable slightly for maximum impact */
+  font-size: calc(var(--font-size-2xl) * 1.2);
+  color: var(--text-heading);
+  margin: 0;
+  transition: var(--transition-theme);
+}
+
+.hero-subheadline {
+  font-size: var(--font-size-lg);
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 0 var(--space-md) 0;
+  transition: var(--transition-theme);
+}
+
+/* ==========================================================================
+   Call to Action Button
+   ========================================================================== */
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-brand-primary);
+  color: var(--text-on-primary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-lg);
+  cursor: pointer;
+
+  /* Smooth hover transitions */
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--color-brand-accent);
+  /* Force white text on hover so it remains readable against the accent red */
+  color: #ffffff;
+}
+
+.cta-button:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: var(--space-xl) var(--space-md);
+    min-height: auto;
+  }
+
+  .hero-headline {
+    /* Drops back to standard 2xl size on mobile devices */
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero-subheadline {
+    font-size: var(--font-size-base);
+  }
+}

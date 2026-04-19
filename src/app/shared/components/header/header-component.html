@@ -1,0 +1,40 @@
+<header class="main-header">
+  <div class="header-left">
+    <!-- <div class="parent-brand">
+      <span class="divider">|</span>
+      <a href="https://iliauni.edu.ge/" target="_blank" rel="noopener">
+        {{ 'HEADER.PARENT_BRAND' | translate }}
+      </a>
+    </div> -->
+  </div>
+
+  <button [routerLink]="['/', currentLang]" class="home-link" aria-label="Home">
+    <span class="material-symbols-outlined">home</span>
+  </button>
+
+  <nav class="header-center">
+    <a [routerLink]="['/', currentLang, 'researchers']" routerLinkActive="active">
+      {{ 'RESEARCHERS.TITLE' | translate }}
+    </a>
+
+    <!-- <a [routerLink]="['/', currentLang, 'publications']" routerLinkActive="active">
+      {{ 'HEADER.NAV.PUBLICATIONS' | translate }}
+    </a> -->
+
+    <a [routerLink]="['/', currentLang, 'projects']" routerLinkActive="active">
+      {{ 'HEADER.NAV.PROJECTS' | translate }}
+    </a>
+
+    <a [routerLink]="['/', currentLang, 'about']" routerLinkActive="active">
+      {{ 'HEADER.NAV.ABOUT' | translate }}
+    </a>
+  </nav>
+
+  <div class="header-right">
+    <app-language-switcher style="z-index: 9999"></app-language-switcher>
+
+    <button (click)="themeService.toggleTheme()" class="theme-toggle-btn">
+      {{ themeService.isDarkMode() ? '🌙' : '☀️' }}
+    </button>
+  </div>
+</header>

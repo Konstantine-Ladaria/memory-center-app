@@ -1,0 +1,6 @@
+.home-section {
+  padding: var(--space-xl);
+  margin: var(--space-xl) auto;
+  max-width: 1200px;
+  background-color: var(--bg-surface);
+}

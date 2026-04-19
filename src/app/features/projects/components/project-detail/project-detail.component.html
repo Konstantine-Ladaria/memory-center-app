@@ -1,0 +1,220 @@
+<div class="back-nav-container">
+  <a [routerLink]="['/', lang, 'projects']" class="back-link">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    {{ 'DETAIL.BACK_TO_LIST' | translate }}
+  </a>
+</div>
+
+<div class="loading-state" *ngIf="!project">
+  <div class="spinner"></div>
+  <p>{{ 'DETAIL.LOADING' | translate }}</p>
+</div>
+
+<article class="project-detail-container" *ngIf="project">
+  <header class="project-hero">
+    <div class="project-meta-top">
+      <span class="status-badge" [ngClass]="project.status">
+        {{ 'PROJECTS.STATUS.' + (project.status | uppercase) | translate }}
+      </span>
+      <span class="date-range">
+        {{ project.startDate | date: 'yyyy' }}
+        <ng-container *ngIf="project.endDate">
+          &ndash; {{ project.endDate | date: 'yyyy' }}</ng-container
+        >
+        <ng-container *ngIf="!project.endDate && project.status === 'ongoing'">
+          &ndash; {{ 'PROJECTS.PRESENT' | translate }}</ng-container
+        >
+      </span>
+    </div>
+
+    <h1 class="project-title">{{ getLocalized(project.title) }}</h1>
+    <p class="project-lead">{{ getLocalized(project.shortDescription) }}</p>
+
+    <div class="hero-actions" *ngIf="project.externalWebsiteUrl">
+      <a
+        [href]="project.externalWebsiteUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="external-btn"
+      >
+        {{ 'DETAIL.VISIT_WEBSITE' | translate }}
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <div class="project-featured-image" *ngIf="project.featuredImageUrl">
+    <img [src]="project.featuredImageUrl" [alt]="getLocalized(project.title)" />
+  </div>
+
+  <div class="project-layout-grid">
+    <div class="main-column">
+      <section class="detail-section" *ngIf="project.fullDescription">
+        <h2>{{ 'DETAIL.ABOUT_PROJECT' | translate }}</h2>
+        <div class="description-content">
+          <p>{{ getLocalized(project.fullDescription) }}</p>
+        </div>
+      </section>
+
+      <section class="detail-section" *ngIf="project.results && project.results.length > 0">
+        <h2>{{ 'DETAIL.RESULTS' | translate }}</h2>
+        <div class="results-list">
+          @for (result of project.results; track $index) {
+            <div class="result-card">
+              <h3>{{ getLocalized(result.title) }}</h3>
+
+              @if (result.description) {
+                <p>{{ getLocalized(result.description) }}</p>
+              }
+
+              @if (result.externalLink) {
+                <a [href]="result.externalLink" target="_blank" rel="noopener" class="result-link">
+                  {{ 'DETAIL.VIEW_RESULT' | translate }} &rarr;
+                </a>
+              }
+            </div>
+          }
+        </div>
+      </section>
+
+      @if (publications$ | async; as publications) {
+        @if (publications.length > 0) {
+          <section class="detail-section">
+            <h2>{{ 'DETAIL.PUBLICATIONS' | translate }}</h2>
+
+            <div class="results-list">
+              @for (pub of publications; track pub.id) {
+                <div class="result-card publication-card">
+                  <p class="citation-text" [innerHTML]="pub | cmsCitation"></p>
+
+                  @if (pub.publicationUrl) {
+                    <a
+                      [href]="pub.publicationUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="result-link"
+                    >
+                      {{ 'DETAIL.VIEW_RESULT' | translate }} &rarr;
+                    </a>
+                  }
+                </div>
+              }
+            </div>
+          </section>
+        }
+      }
+    </div>
+
+    <aside class="sidebar-column">
+      <section class="sidebar-section" *ngIf="project.funders && project.funders.length > 0">
+        <h3>{{ 'DETAIL.SUPPORTED_BY' | translate }}</h3>
+        <ul class="funder-list-vertical">
+          <li *ngFor="let funder of project.funders">
+            <a
+              *ngIf="funder.websiteUrl; else noLinkFunder"
+              [href]="funder.websiteUrl"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                *ngIf="funder.logoUrl"
+                [src]="funder.logoUrl"
+                [alt]="getLocalized(funder.name)"
+                class="funder-logo"
+              />
+              <span *ngIf="!funder.logoUrl">{{ getLocalized(funder.name) }}</span>
+            </a>
+            <ng-template #noLinkFunder>
+              <img
+                *ngIf="funder.logoUrl"
+                [src]="funder.logoUrl"
+                [alt]="getLocalized(funder.name)"
+                class="funder-logo"
+              />
+              <span *ngIf="!funder.logoUrl">{{ getLocalized(funder.name) }}</span>
+            </ng-template>
+          </li>
+        </ul>
+      </section>
+
+      <section
+        class="sidebar-section"
+        *ngIf="project.partnerInstitutions && project.partnerInstitutions.length > 0"
+      >
+        <h3>{{ 'DETAIL.PARTNER_INSTITUTIONS' | translate }}</h3>
+        <ul class="partner-list">
+          <li *ngFor="let partner of project.partnerInstitutions">
+            {{ getLocalized(partner) }}
+          </li>
+        </ul>
+      </section>
+
+      <section
+        class="sidebar-section"
+        *ngIf="
+          project.principalInvestigatorId ||
+          project.coordinatorId ||
+          (project.teamMemberIds && project.teamMemberIds.length > 0)
+        "
+      >
+        <h3>{{ 'DETAIL.RESEARCH_TEAM' | translate }}</h3>
+        <div class="team-grid">
+          <ng-container *ngIf="project.principalInvestigatorId">
+            <div class="pi-label">{{ 'DETAIL.PRINCIPAL_INVESTIGATOR' | translate }}</div>
+            <app-researcher-card
+              [researcherId]="project.principalInvestigatorId"
+            ></app-researcher-card>
+          </ng-container>
+
+          <ng-container *ngIf="project.coordinatorId">
+            <div class="pi-label">{{ 'DETAIL.PROJECT_COORDINATOR' | translate }}</div>
+            <app-researcher-card [researcherId]="project.coordinatorId"></app-researcher-card>
+          </ng-container>
+
+          <ng-container *ngFor="let memberId of project.teamMemberIds">
+            <app-researcher-card [researcherId]="memberId"></app-researcher-card>
+          </ng-container>
+        </div>
+      </section>
+
+      <section
+        class="sidebar-section"
+        *ngIf="project.relatedPublicationIds && project.relatedPublicationIds.length > 0"
+      >
+        <h3>{{ 'DETAIL.RELATED_PUBLICATIONS' | translate }}</h3>
+        <ul class="publication-links">
+          <li *ngFor="let pubId of project.relatedPublicationIds">
+            <a [routerLink]="['/', lang, 'publications']" [fragment]="pubId">
+              {{ 'DETAIL.VIEW_PUBLICATION' | translate }}
+            </a>
+          </li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</article>

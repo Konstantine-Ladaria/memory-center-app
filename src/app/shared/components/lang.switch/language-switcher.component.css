@@ -1,0 +1,131 @@
+/* ==========================================================================
+   Container & Trigger Button
+   ========================================================================== */
+.dropdown-container {
+  position: relative; /* Crucial: Keeps the absolute dropdown locked to this container */
+  display: inline-block;
+}
+
+.dropdown-trigger {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-theme);
+  height: 40px; /* Gives a consistent clickable area */
+  min-width: 50px;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger:focus {
+  background-color: var(--bg-surface-hover);
+}
+
+.current-selection {
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Dropdown Menu
+   ========================================================================== */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* Drops it just below the button with an 8px gap */
+  right: 0; /* Aligns the right edge of the menu with the right edge of the button */
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  min-width: 140px; /* Ensures enough width for the longest translation */
+  padding: var(--space-xs) 0;
+  z-index: 1000; /* Keeps it on top of other content */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Keeps hovered items inside the border radius */
+}
+
+/* ==========================================================================
+   Dropdown Items (Languages)
+   ========================================================================== */
+.dropdown-item {
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Pushes text to left, flag to right */
+  gap: var(--space-md);
+  cursor: pointer;
+  color: var(--text-main);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--bg-surface-hover);
+}
+
+/* The Active Language State */
+.dropdown-item.active {
+  background-color: var(--color-brand-primary);
+  color: var(--text-on-primary);
+}
+
+.lang-shorthand {
+  letter-spacing: 0.05em; /* Slight spacing makes uppercase look cleaner */
+}
+
+/* ==========================================================================
+   Flag Images
+   ========================================================================== */
+.flag-img {
+  width: 24px;
+  height: 18px;
+  object-fit: cover; /* Prevents aspect ratio distortion */
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15); /* Gives flags a slight pop */
+  display: block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  min-width: 140px;
+  padding: var(--space-xs) 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* ADD THESE TWO LINES: */
+  transform-origin: top right; /* Makes it scale out from the button */
+  animation: menuPop 0.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+/* ADD THIS TO THE BOTTOM OF THE FILE: */
+@keyframes menuPop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

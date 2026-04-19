@@ -1,0 +1,111 @@
+{
+  "RESEARCHERS": {
+    "TITLE": "Researchers",
+    "CORE_MEMBERS": "Members",
+    "COLLABORATORS": "Collaborators",
+    "LIST": {
+      "VIEW_PROFILE": "View Profile"
+    }
+  },
+  "BACK_TO_RESEARCHERS": "Back to Researchers",
+  "BIOGRAPHY": "Biography",
+  "CONTACT_AND_PROFILES": "Contact and Profiles",
+  "LOADING_RESEARCHERS": "Loading researchers...",
+  "HEADER": {
+    "BRAND_TITLE": "Caucasus Memory Studies Center",
+    "PARENT_BRAND": "Ilia State University",
+    "NAV": {
+      "PUBLICATIONS": "Publications",
+      "PROJECTS": "Projects",
+      "ABOUT": "About Us"
+    }
+  },
+  "HOME": {
+    "HERO": {
+      "HEADLINE": "Preserving the Oral History of Post-Soviet Social Life",
+      "SUBHEADLINE": "The Caucasus Memory Studies Center is dedicated to researching and documenting collective memory, social change, and historical narratives in the region.",
+      "CTA_BUTTON": "View our Projects"
+    },
+    "PUBLICATIONS": {
+      "TITLE": "Featured Publications",
+      "DESCRIPTION": "A collection of our latest and most significant research."
+    },
+    "RESEARCHERS": {
+      "TITLE": "Our Leading Researchers",
+      "DESCRIPTION": "Meet the team leading our collective memory studies."
+    }
+  },
+  "FOOTER": {
+    "INSTITUTIONAL_TIE": "Operating under the Faculty of Arts and Sciences at Ilia State University",
+    "CONTACT_INFO": {
+      "TITLE": "Contact Information",
+      "FACULTY": "Faculty of Arts and Sciences",
+      "ADDRESS": "Kakutsa Cholokashvili Ave. 3/5, Tbilisi, Georgia"
+    },
+    "COPYRIGHT": {
+      "CENTER_NAME": "Caucasus Memory Studies Center",
+      "ALL_RIGHTS_RESERVED": "All rights reserved."
+    }
+  },
+  "PROJECTS": {
+    "TITLE": "Research Projects",
+    "DESCRIPTION": "Explore our ongoing and completed research initiatives across the Caucasus region.",
+    "FILTER": {
+      "ALL": "All Projects",
+      "ONGOING": "Ongoing",
+      "COMPLETED": "Completed"
+    },
+    "STATUS": {
+      "ONGOING": "Ongoing",
+      "COMPLETED": "Completed",
+      "PLANNED": "Planned"
+    },
+    "PRESENT": "Present",
+    "SUPPORTED_BY": "Supported by",
+    "READ_MORE": "View Project Details",
+    "NO_PROJECTS_FOUND": "No projects found matching this criteria."
+  },
+  "DETAIL": {
+    "BACK_TO_LIST": "Back to Projects",
+    "LOADING": "Loading project details...",
+    "ABOUT_PROJECT": "About the Project",
+    "RESULTS": "Project Deliverables & Results",
+    "VIEW_RESULT": "View Document",
+    "SUPPORTED_BY": "Funded By",
+    "RESEARCH_TEAM": "Research Team",
+    "PRINCIPAL_INVESTIGATOR": "Principal Investigator",
+    "RELATED_PUBLICATIONS": "Related Publications",
+    "VIEW_PUBLICATION": "Go to Publication",
+    "VISIT_WEBSITE": "Visit Official Website"
+  },
+  "ABOUT": {
+    "TITLE": "About the Center",
+    "MISSION": {
+      "TITLE": "Our Mission",
+      "PARAGRAPH_1": "Memory studies in the Caucasus are vital both theoretically and practically, as the perception and interpretation of the past significantly influence the region's cultural and political processes. However, memory research in the region is still in its infancy.",
+      "PARAGRAPH_2": "In Georgia, as well as throughout the Caucasus, memory studies do not yet align with modern scientific trends. Therefore, it is crucial to apply modern paradigms to study memory and other pressing regional issues."
+    },
+    "AFFILIATION": {
+      "TITLE": "Institutional Affiliation",
+      "DESCRIPTION": "The Center for Memory Studies was founded in 2015 within the Faculty of Arts and Sciences at <strong>Ilia State University</strong>. The center focuses on both internal university research and externally funded research projects.",
+      "VISIT_BTN": "Visit Ilia State University"
+    },
+    "GOALS": {
+      "TITLE": "Goals and Objectives",
+      "ITEM_1": "Accumulate and utilize Western scientific experience and develop new theoretical paradigms to advance memory studies in Georgia and the region.",
+      "ITEM_2": "Foster close collaboration with memory studies researchers and scientific centers within and outside the Caucasus.",
+      "ITEM_3": "Implement memory studies into the educational process.",
+      "ITEM_4": "Create educational courses and programs in related fields (history, social sciences, political science, cultural studies)."
+    },
+    "ACTIVITIES": {
+      "TITLE": "Key Activities",
+      "ITEM_1": "Conducting fundamental research in the field of memory studies.",
+      "ITEM_2": "Organizing regional and international conferences, workshops, round tables, and meetings.",
+      "ITEM_3": "Engaging in publishing and translation activities."
+    },
+    "RESEARCHERS": {
+      "CORE_MEMBERS": "Members",
+      "COLLABORATORS": "Collaborators"
+    }
+  }
+}

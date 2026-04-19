@@ -1,0 +1,67 @@
+<div class="page-container" *ngIf="researcher$ | async as researcher; else loading">
+  <div class="navigation-bar">
+    <a routerLink="../" class="btn-back"> &larr; {{ 'BACK_TO_RESEARCHERS' | translate }} </a>
+  </div>
+
+  <header class="profile-header">
+    <div class="avatar-wrapper">
+      <img
+        *ngIf="researcher.photoUrl; else noImage"
+        [src]="researcher.photoUrl"
+        [alt]="researcher.firstName[lang] + ' ' + researcher.lastName[lang]"
+        class="avatar-img"
+      />
+      <ng-template #noImage>
+        <div class="avatar-placeholder">
+          {{ researcher.firstName[lang]?.[0] }}{{ researcher.lastName[lang]?.[0] }}
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="profile-titles">
+      <h1>{{ researcher.firstName[lang] }} {{ researcher.lastName[lang] }}</h1>
+      <h2 class="academic-title">{{ researcher.title[lang] }}</h2>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let discipline of researcher.disciplines">
+          {{ discipline[lang] }}
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-body">
+    <section class="bio-section">
+      <h3>{{ 'BIOGRAPHY' | translate }}</h3>
+      <p class="bio-text">{{ researcher.bio[lang] }}</p>
+    </section>
+
+    <section
+      class="links-section"
+      *ngIf="researcher.email || researcher.academiaUrl || researcher.researchGateUrl"
+    >
+      <h3>{{ 'CONTACT_AND_PROFILES' | translate }}</h3>
+      <ul class="profile-links">
+        <li *ngIf="researcher.email">
+          <strong>Email:</strong>
+          <a [href]="'mailto:' + researcher.email">{{ researcher.email }}</a>
+        </li>
+        <li *ngIf="researcher.facebookUrl">
+          <a [href]="researcher.facebookUrl" target="_blank" rel="noopener">Facebook Profile</a>
+        </li>
+        <li *ngIf="researcher.researchGateUrl">
+          <a [href]="researcher.researchGateUrl" target="_blank" rel="noopener">ResearchGate</a>
+        </li>
+        <li *ngIf="researcher.academiaUrl">
+          <a [href]="researcher.academiaUrl" target="_blank" rel="noopener">Academia.edu</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<ng-template #loading>
+  <div class="loading-state">
+    <p>Loading profile...</p>
+  </div>
+</ng-template>

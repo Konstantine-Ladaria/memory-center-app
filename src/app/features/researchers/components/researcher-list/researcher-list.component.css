@@ -1,0 +1,109 @@
+/* 1. Prevent the page from collapsing while waiting for data */
+.page-container {
+  min-height: 70vh; /* Ensures the footer stays pushed down at the bottom */
+}
+
+/* 2. The entry animation for the cards */
+app-researcher-card {
+  /* 'both' ensures the cards stay invisible before their delay starts */
+  animation: cardEnter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* 3. The Stagger Effect: Delays each card slightly more than the last */
+app-researcher-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+app-researcher-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+app-researcher-card:nth-child(3) {
+  animation-delay: 0.15s;
+}
+app-researcher-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+app-researcher-card:nth-child(5) {
+  animation-delay: 0.25s;
+}
+/* Any card after the 5th just gets a standard 0.3s delay */
+app-researcher-card:nth-child(n + 6) {
+  animation-delay: 0.3s;
+}
+
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Optional: A simple loading spinner to show while the network is thinking */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  color: var(--text-subtle);
+  font-style: italic;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+}
+/* ==========================================================================
+   Container & Typography
+   ========================================================================== */
+.researcher-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.researcher-group {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 4rem; /* Adds breathing room between Core Members and Collaborators */
+}
+
+.group-title {
+  font-size: 1.75rem;
+  color: var(--text-main, #333);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-subtle, #eaeaea);
+}
+
+/* ==========================================================================
+   The Grid System (Desktop: 2 in a row)
+   ========================================================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+/* ==========================================================================
+   Mobile Responsiveness
+   ========================================================================== */
+@media (max-width: 768px) {
+  .researcher-list-container {
+    padding: 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .grid {
+    /* Stack them 1 per row on smaller screens like tablets and phones */
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}

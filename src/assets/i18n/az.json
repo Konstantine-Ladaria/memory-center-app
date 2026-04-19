@@ -1,0 +1,84 @@
+{
+  "RESEARCHERS": "Tədqiqatçılar",
+  "RESEARCHERS.LIST.VIEW_PROFILE": "Profilə bax",
+  "BACK_TO_RESEARCHERS": "Tədqiqatçılara qayıt",
+  "BIOGRAPHY": "Bioqrafiya",
+  "CONTACT_AND_PROFILES": "Əlaqə və Profillər",
+  "HEADER.BRAND_TITLE": "Qafqazda Yaddaş\nTədqiqatları Mərkəzi",
+  "HEADER.PARENT_BRAND": "İlya Dövlət Universiteti",
+  "HEADER.NAV.PUBLICATIONS": "Nəşrlər",
+  "HEADER.NAV.ABOUT": "Haqqımızda",
+  "HOME.HERO.HEADLINE": "Postsovet Sosial Həyatının Şifahi Tarixinin Qorunması",
+  "HOME.HERO.SUBHEADLINE": "Qafqazda Yaddaş Tədqiqatları Mərkəzi regionda kollektiv yaddaşın, sosial dəyişikliklərin və tarixi narrativlərin tədqiqinə və sənədləşdirilməsinə həsr olunmuşdur.",
+  "FOOTER.INSTITUTIONAL_TIE": "İlya Dövlət Universitetinin İncəsənət və Elmlər Fakültəsinin nəzdində fəaliyyət göstərir",
+  "FOOTER.CONTACT_INFO.TITLE": "Əlaqə Məlumatları",
+  "FOOTER.CONTACT_INFO.FACULTY": "İncəsənət və Elmlər Fakültəsi",
+  "FOOTER.CONTACT_INFO.ADDRESS": "Kakutsa Çolokaşvili pr. 3/5, Tbilisi, Gürcüstan",
+  "FOOTER.COPYRIGHT.CENTER_NAME": "Qafqazda Yaddaş Tədqiqatları Mərkəzi",
+  "FOOTER.COPYRIGHT.ALL_RIGHTS_RESERVED": "Bütün hüquqlar qorunur.",
+  "HOME.PUBLICATIONS.TITLE": "Seçilmiş Nəşrlər",
+  "HOME.PUBLICATIONS.DESCRIPTION": "Ən son və ən əhəmiyyətli tədqiqatlarımızın toplusu.",
+  "HOME.RESEARCHERS.TITLE": "Aparıcı Tədqiqatçılarımız",
+  "HOME.RESEARCHERS.DESCRIPTION": "Kollektiv yaddaş tədqiqatlarımıza rəhbərlik edən komanda ilə tanış olun.",
+  "Loading researchers...": "Tədqiqatçılar yüklənir...",
+  "HEADER.NAV.PROJECTS": "Layihələr",
+  "HOME.HERO.CTA_BUTTON": "Layihələrə baxın",
+
+  "PROJECTS": {
+    "TITLE": "Tədqiqat Layihələri",
+    "DESCRIPTION": "Qafqaz regionu üzrə davam edən və tamamlanmış tədqiqat təşəbbüslərimizlə tanış olun.",
+    "FILTER": {
+      "ALL": "Bütün Layihələr",
+      "ONGOING": "Davam edən",
+      "COMPLETED": "Tamamlanmış"
+    },
+    "STATUS": {
+      "ONGOING": "Davam edən",
+      "COMPLETED": "Tamamlanmış",
+      "PLANNED": "Planlaşdırılan"
+    },
+    "PRESENT": "Hazırkı",
+    "SUPPORTED_BY": "Dəstəkləyən",
+    "READ_MORE": "Layihənin detallarına baxın",
+    "NO_PROJECTS_FOUND": "Bu meyarlara uyğun layihə tapılmadı."
+  },
+  "DETAIL": {
+    "BACK_TO_LIST": "Layihələrə qayıt",
+    "LOADING": "Layihə detalları yüklənir...",
+    "ABOUT_PROJECT": "Layihə haqqında",
+    "RESULTS": "Layihənin Nəticələri",
+    "VIEW_RESULT": "Sənədə baxın",
+    "SUPPORTED_BY": "Maliyyələşdirən",
+    "RESEARCH_TEAM": "Tədqiqat Qrupu",
+    "PRINCIPAL_INVESTIGATOR": "Baş Tədqiqatçı",
+    "RELATED_PUBLICATIONS": "Əlaqəli Nəşrlər",
+    "VIEW_PUBLICATION": "Nəşrə keçin",
+    "VISIT_WEBSITE": "Rəsmi Vebsayta Keçid"
+  },
+  "ABOUT": {
+    "TITLE": "Mərkəz haqqında",
+    "MISSION": {
+      "TITLE": "Missiyamız",
+      "PARAGRAPH_1": "Qafqazda yaddaş tədqiqatları həm nəzəri, həm də praktiki baxımdan həyati əhəmiyyət daşıyır, çünki keçmişin qavranılması və təfsiri regionun mədəni və siyasi proseslərinə əhəmiyyətli dərəcədə təsir göstərir. Lakin regionda yaddaş tədqiqatları hələ başlanğıc mərhələsindədir.",
+      "PARAGRAPH_2": "Gürcüstanda, eləcə də bütün Qafqazda yaddaş tədqiqatları hələ ki, müasir elmi tendensiyalarla uyğunlaşmır. Buna görə də, yaddaş və digər aktual regional problemlərin öyrənilməsində müasir paradiqmaların tətbiqi çox vacibdir."
+    },
+    "AFFILIATION": {
+      "TITLE": "İnstitusional Mənsubiyyət",
+      "DESCRIPTION": "Yaddaş Tədqiqatları Mərkəzi 2015-ci ildə <strong>İlya Dövlət Universitetinin</strong> İncəsənət və Elmlər Fakültəsinin nəzdində təsis edilmişdir. Mərkəz həm universitetdaxili tədqiqatlara, həm də kənar fondlar tərəfindən maliyyələşdirilən tədqiqat layihələrinə yönəlmişdir.",
+      "VISIT_BTN": "İlya Dövlət Universitetinə keçid"
+    },
+    "GOALS": {
+      "TITLE": "Məqsəd və Vəzifələr",
+      "ITEM_1": "Gürcüstanda və regionda yaddaş tədqiqatlarını inkişaf etdirmək üçün Qərb elmi təcrübəsini toplamaq və istifadə etmək, yeni nəzəri paradiqmalar hazırlamaq.",
+      "ITEM_2": "Qafqazda və ondan kənarda yaddaş tədqiqatçıları və elmi mərkəzlərlə sıx əməkdaşlığı inkişaf etdirmək.",
+      "ITEM_3": "Yaddaş tədqiqatlarını tədris prosesinə tətbiq etmək.",
+      "ITEM_4": "Əlaqədar sahələrdə (tarix, sosial elmlər, politologiya, mədəniyyətşünaslıq) tədris kursları və proqramları yaratmaq."
+    },
+    "ACTIVITIES": {
+      "TITLE": "Əsas Fəaliyyətlər",
+      "ITEM_1": "Yaddaş tədqiqatları sahəsində fundamental tədqiqatların aparılması.",
+      "ITEM_2": "Regional və beynəlxalq konfransların, seminarların, dəyirmi masaların və görüşlərin təşkili.",
+      "ITEM_3": "Nəşriyyat və tərcümə fəaliyyəti ilə məşğul olmaq."
+    }
+  }
+}

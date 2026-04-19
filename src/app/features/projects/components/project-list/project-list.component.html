@@ -1,0 +1,97 @@
+<section class="projects-container">
+  <header class="page-header">
+    <h1 class="page-title">{{ 'PROJECTS.TITLE' | translate }}</h1>
+    <p class="page-description">{{ 'PROJECTS.DESCRIPTION' | translate }}</p>
+  </header>
+
+  <div class="filter-tabs">
+    <button class="tab-btn" [class.active]="activeFilter === 'all'" (click)="setFilter('all')">
+      {{ 'PROJECTS.FILTER.ALL' | translate }}
+    </button>
+    <button
+      class="tab-btn"
+      [class.active]="activeFilter === 'ongoing'"
+      (click)="setFilter('ongoing')"
+    >
+      {{ 'PROJECTS.FILTER.ONGOING' | translate }}
+    </button>
+    <button
+      class="tab-btn"
+      [class.active]="activeFilter === 'completed'"
+      (click)="setFilter('completed')"
+    >
+      {{ 'PROJECTS.FILTER.COMPLETED' | translate }}
+    </button>
+  </div>
+
+  <div class="projects-grid">
+    <article class="project-card" *ngFor="let project of filteredProjects">
+      <div class="project-image" *ngIf="project.featuredImageUrl">
+        <img [src]="project.featuredImageUrl" [alt]="getLocalized(project.title)" />
+      </div>
+
+      <div class="project-content">
+        <div class="project-meta">
+          <span class="status-badge" [ngClass]="project.status">
+            {{ 'PROJECTS.STATUS.' + (project.status | uppercase) | translate }}
+          </span>
+          <span class="date-range">
+            {{ project.startDate | date: 'yyyy' }}
+            <ng-container *ngIf="project.endDate">
+              – {{ project.endDate | date: 'yyyy' }}</ng-container
+            >
+            <ng-container *ngIf="!project.endDate && project.status === 'ongoing'">
+              – {{ 'PROJECTS.PRESENT' | translate }}</ng-container
+            >
+          </span>
+        </div>
+
+        <h2 class="project-title">{{ getLocalized(project.title) }}</h2>
+        <p class="project-description">
+          {{ getLocalized(project.shortDescription) }}
+        </p>
+
+        <div class="project-funders" *ngIf="project.funders && project.funders.length > 0">
+          <span class="funders-label">{{ 'PROJECTS.SUPPORTED_BY' | translate }}:</span>
+          <div class="funder-list">
+            <ng-container *ngFor="let funder of project.funders">
+              <img
+                *ngIf="funder.logoUrl; else funderText"
+                [src]="funder.logoUrl"
+                [alt]="getLocalized(funder.name)"
+                class="funder-logo"
+                [title]="getLocalized(funder.name)"
+              />
+              <ng-template #funderText>
+                <span class="funder-text-badge">{{ getLocalized(funder.name) }}</span>
+              </ng-template>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <a [routerLink]="['/', currentLang, 'projects', project.id]" class="read-more-link">
+            {{ 'PROJECTS.READ_MORE' | translate }}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="empty-state" *ngIf="filteredProjects.length === 0">
+    <p>{{ 'PROJECTS.NO_PROJECTS_FOUND' | translate }}</p>
+  </div>
+</section>

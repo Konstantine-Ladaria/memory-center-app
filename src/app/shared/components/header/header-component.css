@@ -1,0 +1,200 @@
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1000;
+  padding: 10px var(--space-md);
+  min-height: auto; /* Remove any hardcoded heights if they exist */
+}
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand-link {
+  text-decoration: none;
+  color: var(--text-heading);
+}
+
+.brand-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.parent-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.parent-brand a {
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+.parent-brand a:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+.header-center a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition-theme);
+}
+
+.header-center a:hover,
+.header-center a.active {
+  color: #0056b3;
+  border-bottom-color: #0056b3;
+}
+
+.current-lang-btn,
+.theme-toggle-btn {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-theme);
+  height: 40px; /* Gives a consistent clickable area */
+  min-width: 50px;
+}
+.theme-toggle-btn:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--bg-surface);
+  min-width: 140px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  z-index: 1001;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+}
+
+.dropdown-menu button:hover {
+  background-color: var(--bg-surface-hover);
+}
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-heading); /* Matches your header text */
+  text-decoration: none;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  border: none;
+}
+
+button.home-link:hover {
+  background-color: var(--bg-surface);
+}
+
+.home-link:active {
+  transform: scale(0.95); /* Tiny click animation */
+}
+
+/* Specific styling for the Material icon */
+.home-link .material-symbols-outlined {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs) var(--space-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-theme);
+  height: 30px; /* Gives a consistent clickable area */
+  min-width: 38px;
+  font-size: 28px; /* Adjust this to match your header's proportions */
+  font-weight: 300; /* Makes the outlined icon look a bit sleeker */
+}
+
+/* ==========================================================================
+   Mobile Header Layout (Screens < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-header {
+    flex-wrap: wrap; /* Allows children to drop to the next line */
+    padding: 1rem;
+  }
+
+  /* Force the navigation to drop to the bottom and take full width */
+  .header-center {
+    order: 3; /* Places it after header-left and header-right */
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: space-around; /* Spreads out the links nicely */
+    gap: 0.5rem;
+
+    /* Optional: allows horizontal scrolling if links get too squished on very small phones */
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 0.5rem;
+  }
+
+  .header-center a {
+    font-size: 0.9rem; /* Slightly smaller text for mobile */
+  }
+
+  /* Keep left and right sections on the top row */
+  .header-left,
+  .home-link {
+    order: 1;
+  }
+
+  .header-right {
+    order: 2;
+  }
+}
+
+/* Very Small Devices (e.g., iPhone SE) */
+@media (max-width: 400px) {
+  .header-center {
+    justify-content: flex-start; /* Switch to scrolling rather than squishing */
+  }
+}

@@ -1,0 +1,31 @@
+<article class="researcher-card" *ngIf="researcher">
+  <div class="avatar-wrapper">
+    <img
+      *ngIf="researcher.photoUrl; else noImage"
+      [src]="researcher.photoUrl"
+      [alt]="getLocalized(researcher.firstName) + ' ' + getLocalized(researcher.lastName)"
+      class="avatar-img"
+    />
+
+    <ng-template #noImage>
+      <div class="avatar-placeholder">
+        {{ getLocalized(researcher.firstName)[0] }}{{ getLocalized(researcher.lastName)[0] }}
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="card-content">
+    <a [routerLink]="['/', lang, 'researchers', researcher.id]" class="name-link">
+      <h3 class="name">
+        {{ getLocalized(researcher.firstName) }} {{ getLocalized(researcher.lastName) }}
+      </h3>
+    </a>
+    <p class="title">{{ getLocalized(researcher.title) }}</p>
+
+    <div class="discipline-tags">
+      <span class="tag" *ngFor="let discipline of researcher.disciplines">
+        {{ getLocalized(discipline) }}
+      </span>
+    </div>
+  </div>
+</article>

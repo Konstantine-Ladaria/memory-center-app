@@ -1,0 +1,24 @@
+<div class="dropdown-container">
+  <button class="dropdown-trigger" (click)="toggleDropdown($event)">
+    <div class="current-selection">
+      <img
+        *ngIf="selectedLanguage"
+        [src]="selectedLanguage.flag"
+        class="flag-img"
+        alt="Current Language"
+      />
+    </div>
+  </button>
+
+  <div class="dropdown-menu" *ngIf="isOpen">
+    <button
+      *ngFor="let lang of availableLanguages"
+      class="dropdown-item"
+      [class.active]="lang.code === activeLang"
+      (click)="switchLanguage(lang.code, $event)"
+    >
+      <span class="lang-shorthand">{{ lang.code | uppercase }}</span>
+      <img [src]="lang.flag" class="flag-img" [alt]="lang.label" />
+    </button>
+  </div>
+</div>
