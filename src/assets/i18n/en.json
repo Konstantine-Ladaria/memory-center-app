@@ -107,5 +107,13 @@
       "CORE_MEMBERS": "Members",
       "COLLABORATORS": "Collaborators"
     }
+  },
+  "BREADCRUMBS": {
+    "ABOUT": "About Us",
+    "RESEARCHERS": "Our Researchers",
+    "PUBLICATIONS": "Publications",
+    "PROJECTS": "Research Projects",
+    "HEADER.NAV.HOME": "Home",
+    "BREADCRUMBS.PROJ-NUPI-IVORY-TOWER-2015": "Project: Research Beyond Yvory Tpwer"
   }
 }

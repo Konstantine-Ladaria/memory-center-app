@@ -1,0 +1,32 @@
+<button class="menu-trigger" (click)="toggleMenu()" [class.open]="isOpen" aria-label="Toggle menu">
+  <div class="icon-wrapper">
+    <span class="material-symbols-outlined icon-menu">menu</span>
+    <span class="material-symbols-outlined icon-close">close</span>
+  </div>
+</button>
+
+<div class="menu-backdrop" [class.active]="isOpen" (click)="closeMenu()"></div>
+
+<aside class="side-panel" [class.open]="isOpen">
+  <nav class="panel-nav">
+    <a [routerLink]="['/', currentLang]" (click)="closeMenu()">Home</a>
+    <a
+      [routerLink]="['/', currentLang, 'researchers']"
+      (click)="closeMenu()"
+      routerLinkActive="active"
+      >{{ 'RESEARCHERS.TITLE' | translate }}</a
+    >
+    <!-- <a [routerLink]="['/', currentLang, 'publications']" (click)="closeMenu()" routerLinkActive="active">{{
+      'HEADER.NAV.PUBLICATIONS' | translate
+    }}</a> -->
+    <a
+      [routerLink]="['/', currentLang, 'projects']"
+      (click)="closeMenu()"
+      routerLinkActive="active"
+      >{{ 'HEADER.NAV.PROJECTS' | translate }}</a
+    >
+    <a [routerLink]="['/', currentLang, 'about']" (click)="closeMenu()" routerLinkActive="active">{{
+      'HEADER.NAV.ABOUT' | translate
+    }}</a>
+  </nav>
+</aside>

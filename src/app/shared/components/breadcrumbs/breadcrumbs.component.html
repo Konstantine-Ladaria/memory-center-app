@@ -1,0 +1,14 @@
+<nav aria-label="breadcrumb" class="breadcrumb-container">
+  <ol class="breadcrumb-list">
+    @for (crumb of breadcrumbs; track crumb.url; let isLast = $last) {
+      <li class="breadcrumb-item" [class.active]="isLast">
+        @if (!isLast) {
+          <a [routerLink]="crumb.url">{{ crumb.label | translate }}</a>
+          <span class="material-symbols-outlined separator">chevron_right</span>
+        } @else {
+          <span aria-current="page">{{ crumb.label | translate }}</span>
+        }
+      </li>
+    }
+  </ol>
+</nav>

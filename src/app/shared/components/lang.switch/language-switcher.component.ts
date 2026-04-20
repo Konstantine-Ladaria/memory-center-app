@@ -67,6 +67,9 @@ export class LanguageSwitcherComponent implements OnInit {
     this.translate.use(langCode);
     localStorage.setItem('preferredLang', langCode);
 
+    // 1. Memorize the exact pixel position of the user's screen before the URL changes
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
     const currentUrl = this.router.url;
     let newUrl: string;
 
@@ -78,8 +81,19 @@ export class LanguageSwitcherComponent implements OnInit {
       newUrl = `/${langCode}${currentUrl}`;
     }
 
-    this.router.navigateByUrl(newUrl, { replaceUrl: true });
     this.isOpen = false;
+
+    // 2. Tell Angular to navigate to the translated URL, then fire the scroll lock
+    this.router.navigateByUrl(newUrl, { replaceUrl: true }).then(() => {
+      // 3. Override Angular's auto-scroll by snapping back to the memorized position.
+      setTimeout(() => {
+        window.scrollTo({
+          top: currentScroll,
+          left: 0,
+          behavior: 'instant' as ScrollBehavior, // Cast as ScrollBehavior to satisfy strict TS compilers
+        });
+      }, 0);
+    });
   }
 
   // This brilliant little HostListener ensures that if the user clicks

@@ -1,11 +1,23 @@
 /* ==========================================================================
    Base Theme (Day / Light Mode)
    ========================================================================== */
+html,
 body {
   width: 100%;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
+  padding-top: 80px;
+  display: flex;
 }
+app-root {
+  display: block;
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+  top: -70px;
+}
+
 :root {
   /* --- 1. Core Color Palette --- */
   --color-brand-primary: #1a365d; /* Deep Academic Navy */

@@ -1,5 +1,5 @@
 <div class="back-nav-container">
-  <a [routerLink]="['/', lang, 'projects']" class="back-link">
+  <a [routerLink]="['/', currentLang, 'projects']" class="back-link">
     <svg
       width="20"
       height="20"
@@ -209,7 +209,7 @@
         <h3>{{ 'DETAIL.RELATED_PUBLICATIONS' | translate }}</h3>
         <ul class="publication-links">
           <li *ngFor="let pubId of project.relatedPublicationIds">
-            <a [routerLink]="['/', lang, 'publications']" [fragment]="pubId">
+            <a [routerLink]="['/', currentLang, 'publications']" [fragment]="pubId">
               {{ 'DETAIL.VIEW_PUBLICATION' | translate }}
             </a>
           </li>

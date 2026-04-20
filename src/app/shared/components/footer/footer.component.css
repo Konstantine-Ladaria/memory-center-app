@@ -16,13 +16,15 @@
 
 .institutional-tie {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .iliauni-logo {
   max-width: 150px; /* Adjust as needed for your logo size */
-  margin-bottom: var(--space-md);
+  margin-bottom: 0;
+  cursor: pointer;
 }
 
 .institutional-tie p {
@@ -72,6 +74,56 @@
 .copyright p {
   margin: 0;
 }
+.iliauni-logo {
+  height: 60px; /* Adjust based on your footer height */
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.iliauni-logo:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+/* ==========================================================================
+   Copyright Section
+   ========================================================================== */
+.copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Vertically centers the logo with the text */
+  justify-content: center; /* Centers the whole block in the footer */
+  gap: 1rem; /* Adds nice spacing between the logo and the text */
+}
+
+.copyright-logo {
+  height: 60px; /* Keep this relatively small so it acts like a badge */
+  width: auto;
+  object-fit: contain;
+  opacity: 0.7; /* Makes it look more subtle, like standard footer watermarks */
+  transition: opacity 0.2s ease;
+}
+
+.copyright-logo:hover {
+  opacity: 1; /* Brightens up if the user hovers over it */
+  cursor: pointer;
+}
+
+.copyright-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: var(--font-size-sm, 0.875rem); /* Keeps the text appropriately small */
+  color: var(--text-muted);
+}
+
+.copyright-text p {
+  margin: 0; /* Removes default paragraph margins so they stack tightly */
+}
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
 
 @media (max-width: 768px) {
   .footer-grid {

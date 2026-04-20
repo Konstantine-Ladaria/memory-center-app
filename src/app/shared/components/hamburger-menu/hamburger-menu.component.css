@@ -1,0 +1,168 @@
+/* ==========================================================================
+   Hamburger Trigger Button
+   ========================================================================== */
+.menu-trigger {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001; /* Keeps button above the sliding panel */
+  position: relative;
+  transition: var(--transition-theme);
+  border-radius: 20%;
+}
+
+.menu-trigger .material-symbols-outlined {
+  font-size: 28px;
+  transition: transform 0.3s ease;
+}
+
+.menu-trigger:hover {
+  background-color: var(--bg-surface-hover);
+}
+
+/* ==========================================================================
+   Hamburger Button Base
+   ========================================================================== */
+.menu-trigger {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Creates a fixed-size box so absolute positioning works perfectly */
+.icon-wrapper {
+  position: relative;
+  width: 28px; /* Set this to match your font-size */
+  height: 28px; /* Set this to match your font-size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base styles for both icons */
+.icon-wrapper .material-symbols-outlined {
+  font-size: 28px;
+  position: absolute;
+  /* Use a cubic-bezier for a snappy, modern acceleration */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Default State (Menu Closed)
+   ========================================================================== */
+.icon-menu {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.icon-close {
+  opacity: 0;
+  /* Start it rotated and slightly shrunk so it "springs" into place */
+  transform: rotate(-90deg) scale(0.5);
+}
+
+/* ==========================================================================
+   Active State (Menu Open)
+   ========================================================================== */
+.menu-trigger.open .icon-menu {
+  opacity: 0;
+  /* Spins away to the right */
+  transform: rotate(90deg) scale(0.5);
+}
+
+.menu-trigger.open .icon-close {
+  opacity: 1;
+  /* Snaps into full view */
+  transform: rotate(0deg) scale(1);
+}
+
+/* ==========================================================================
+   Dark Overlay Backdrop
+   ========================================================================== */
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+  z-index: 9999;
+}
+
+.menu-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   Sliding Side Panel (Desktop: 50vw)
+   ========================================================================== */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0; /* Change to left: 0 if you want it to slide from the left */
+  height: 100vh;
+  width: 50vw; /* Takes up exactly half the screen on wide monitors */
+  background-color: var(--bg-surface);
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+
+  /* Pushes it completely off the screen to the right */
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  display: flex;
+  flex-direction: column;
+  padding: 80px 2rem 2rem 2rem; /* Top padding clears the header/close button */
+}
+
+.side-panel.open {
+  transform: translateX(0); /* Slides it back into view */
+}
+
+/* ==========================================================================
+   Navigation Links inside Panel
+   ========================================================================== */
+.panel-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel-nav a {
+  font-size: var(--font-size-xl, 1.5rem);
+  font-family: var(--font-family-heading);
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.panel-nav a:hover {
+  color: var(--link-hover);
+}
+
+/* ==========================================================================
+   Mobile Responsiveness (Mobile: 100vw)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .side-panel {
+    width: 100%; /* Takes up the whole screen on phones */
+  }
+}

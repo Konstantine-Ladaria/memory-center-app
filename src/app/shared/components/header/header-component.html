@@ -1,40 +1,55 @@
-<header class="main-header">
+<header class="main-header" [class.header-hidden]="isHidden">
   <div class="header-left">
-    <!-- <div class="parent-brand">
-      <span class="divider">|</span>
-      <a href="https://iliauni.edu.ge/" target="_blank" rel="noopener">
-        {{ 'HEADER.PARENT_BRAND' | translate }}
+    <a routerLink="/" class="brand-logo-link" aria-label="Home">
+      <img
+        [src]="
+          themeService.isDarkMode()
+            ? 'assets/images/brand/center-logo-light.png'
+            : 'assets/images/brand/center-logo-dark.png'
+        "
+        [alt]="'HEADER.BRAND_TITLE' | translate"
+        class="brand-logo"
+      />
+    </a>
+
+    <span class="logo-divider"></span>
+
+    @if (parentOrg$ | async; as parentOrg) {
+      <a
+        [href]="parentOrg.websiteUrl"
+        target="_blank"
+        rel="noopener"
+        class="parent-logo-link"
+        [title]="parentOrg.title[$any(currentLang)]"
+      >
+        <img
+          [src]="
+            themeService.isDarkMode() && parentOrg.logoDarkUrl
+              ? parentOrg.logoDarkUrl
+              : parentOrg.logoUrl
+          "
+          [alt]="'HEADER.PARENT_BRAND' | translate"
+          class="parent-logo"
+        />
       </a>
-    </div> -->
+    }
   </div>
 
-  <button [routerLink]="['/', currentLang]" class="home-link" aria-label="Home">
-    <span class="material-symbols-outlined">home</span>
-  </button>
-
   <nav class="header-center">
-    <a [routerLink]="['/', currentLang, 'researchers']" routerLinkActive="active">
-      {{ 'RESEARCHERS.TITLE' | translate }}
-    </a>
-
-    <!-- <a [routerLink]="['/', currentLang, 'publications']" routerLinkActive="active">
-      {{ 'HEADER.NAV.PUBLICATIONS' | translate }}
-    </a> -->
-
-    <a [routerLink]="['/', currentLang, 'projects']" routerLinkActive="active">
-      {{ 'HEADER.NAV.PROJECTS' | translate }}
-    </a>
-
-    <a [routerLink]="['/', currentLang, 'about']" routerLinkActive="active">
-      {{ 'HEADER.NAV.ABOUT' | translate }}
+    <a [routerLink]="['/', currentLang]" class="brand-link">
+      <span class="brand-title">{{ 'HEADER.BRAND_TITLE' | translate }}</span>
     </a>
   </nav>
 
   <div class="header-right">
     <app-language-switcher style="z-index: 9999"></app-language-switcher>
 
-    <button (click)="themeService.toggleTheme()" class="theme-toggle-btn">
-      {{ themeService.isDarkMode() ? '🌙' : '☀️' }}
+    <button (click)="themeService.toggleTheme()" class="theme-toggle-btn" aria-label="Toggle theme">
+      <span class="material-symbols-outlined">
+        {{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}
+      </span>
     </button>
+
+    <app-hamburger-menu></app-hamburger-menu>
   </div>
 </header>

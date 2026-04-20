@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withViewTransitions } from '@angular/router';
+import { provideRouter, withViewTransitions, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideTranslateService } from '@ngx-translate/core';
@@ -16,6 +16,9 @@ export const appConfig: ApplicationConfig = {
         onViewTransitionCreated: ({ transition }) => {
           transition.ready.catch(() => {});
         },
+      }),
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
       }),
     ),
 

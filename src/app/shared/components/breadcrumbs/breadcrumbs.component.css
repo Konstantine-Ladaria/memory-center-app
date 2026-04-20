@@ -1,0 +1,45 @@
+.breadcrumb-container {
+  padding: 1rem 2rem;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none; /* Removes the default 1. 2. 3. numbers */
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-sm, 0.875rem);
+  font-family: var(--font-family-body);
+}
+
+.breadcrumb-item a {
+  color: var(--text-main);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--link-hover);
+}
+
+/* The final item in the list (the page we are currently on) */
+.breadcrumb-item.active {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.separator {
+  font-size: 16px; /* Keep the icon small */
+  margin: 0 0.5rem;
+  color: var(--border-subtle);
+  display: flex;
+  align-items: center;
+}

@@ -1,15 +1,44 @@
+/* ==========================================================================
+   Header Host & Sticky Behavior
+   ========================================================================== */
+/* We target the custom <app-header> element itself to make it stick to the top */
+:host {
+  position: fixed; /* Changed from sticky */
+  top: 0;
+  left: 0; /* Added to ensure it aligns perfectly */
+  width: 100%; /* Added so it stretches across the screen */
+  z-index: 9999;
+  display: block;
+}
+
+/* ==========================================================================
+   Main Header Animation
+   ========================================================================== */
+
+/* The class Angular applies when scrolling down */
+.main-header.header-hidden {
+  /* Slides the header exactly 100% of its height upwards off the screen */
+  transform: translateY(-100%);
+
+  /* Optional: Add a slight box-shadow dropoff for an extra premium feel */
+  box-shadow: none;
+}
 .main-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: var(--space-md) var(--space-xl);
   background-color: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
   position: relative;
   z-index: 1000;
-  padding: 10px var(--space-md);
   min-height: auto; /* Remove any hardcoded heights if they exist */
+  padding-bottom: 0.7rem;
+  padding-top: 0.7rem;
+  filter: brightness(1.2);
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.3s ease;
 }
 .header-left,
 .header-center,
@@ -17,18 +46,6 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-}
-
-.brand-link {
-  text-decoration: none;
-  color: var(--text-heading);
-}
-
-.brand-title {
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-lg);
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .parent-brand {
@@ -49,25 +66,9 @@
   color: var(--link-hover);
 }
 
-.header-center a {
-  text-decoration: none;
-  color: var(--text-main);
-  font-weight: 500;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid transparent;
-  transition: var(--transition-theme);
-}
-
-.header-center a:hover,
-.header-center a.active {
-  color: #0056b3;
-  border-bottom-color: #0056b3;
-}
-
-.current-lang-btn,
 .theme-toggle-btn {
   background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  border: 0px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: var(--space-xs) var(--space-sm);
   cursor: pointer;
@@ -81,77 +82,133 @@
 .theme-toggle-btn:hover {
   background-color: var(--bg-surface-hover);
 }
-
-/* Dropdown Styles */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-menu {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  background-color: var(--bg-surface);
-  min-width: 140px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  z-index: 1001;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-
-.dropdown-menu button {
-  background: none;
-  border: none;
-  border-radius: 0;
-  width: 100%;
-  padding: var(--space-sm) var(--space-md);
-  text-align: left;
-}
-
-.dropdown-menu button:hover {
-  background-color: var(--bg-surface-hover);
-}
-.home-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-heading); /* Matches your header text */
+.brand-link {
   text-decoration: none;
-  padding: var(--space-xs);
-  border-radius: var(--radius-sm);
-  transition:
-    color 0.2s ease,
-    background-color 0.2s ease,
-    transform 0.2s ease;
-  border: none;
+  margin-bottom: var(--space-sm);
 }
 
-button.home-link:hover {
-  background-color: var(--bg-surface);
+.brand-title {
+  display: block;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  color: var(--color-brand-accent); /* Uses your Crimson red to draw the eye */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: pre-wrap;
+  line-height: 1.2;
+}
+/* ==========================================================================
+   Parent Organization Logo
+   ========================================================================== */
+.parent-logo-link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
 }
 
-.home-link:active {
-  transform: scale(0.95); /* Tiny click animation */
+.parent-logo-link:hover {
+  opacity: 0.8; /* Subtle hover effect so users know it is clickable */
 }
 
-/* Specific styling for the Material icon */
-.home-link .material-symbols-outlined {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs) var(--space-sm);
-  cursor: pointer;
+.parent-logo {
+  height: 50px; /* Adjust this number to perfectly fit your specific header height */
+  width: auto;
+  object-fit: contain; /* Ensures the logo never stretches or squishes */
+}
+/* ==========================================================================
+   Header Left Section (Logo Container)
+   ========================================================================== */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Adds breathing room between the logos and the divider */
+}
+
+/* ==========================================================================
+   Main Center Logo
+   ========================================================================== */
+.brand-logo-link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.brand-logo-link:hover {
+  opacity: 0.8;
+}
+
+.brand-logo {
+  /* It is usually best to make your center's logo slightly larger or equal 
+     in height to the parent logo */
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   Logo Divider
+   ========================================================================== */
+.logo-divider {
+  height: 35px; /* Slightly shorter than the logos */
+  width: 1px;
+  background-color: var(--border-subtle); /* Uses your existing light/dark theme border */
+  margin: 0 0.75rem;
+}
+
+/* ==========================================================================
+   Parent Organization Logo (Keep your existing styles!)
+   ========================================================================== */
+.parent-logo-link {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.parent-logo-link:hover {
+  opacity: 0.8;
+}
+
+.parent-logo {
+  height: 50px; /* Keeping this slightly smaller establishes visual hierarchy */
+  width: auto;
+  object-fit: contain;
+}
+
+.theme-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition-theme);
-  height: 30px; /* Gives a consistent clickable area */
-  min-width: 38px;
-  font-size: 28px; /* Adjust this to match your header's proportions */
-  font-weight: 300; /* Makes the outlined icon look a bit sleeker */
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 8px; /* Adds a nice clickable area around the icon */
+}
+
+/* Optional: Make the icon change smoothly */
+.theme-toggle-btn .material-symbols-outlined {
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover .material-symbols-outlined {
+  transform: scale(1.1); /* Slight pop effect when hovering */
+}
+
+/* 1. Add a smooth transition to the base flag image */
+.flag-img {
+  transition: transform 0.2s ease-in-out;
+  /* Ensure your flags have a set width/height here if they don't already! */
+}
+
+/* 2. Scale the flag when hovering over the main trigger button */
+.dropdown-trigger:hover .flag-img {
+  transform: scale(1.15); /* Expands it by 15% */
+}
+
+/* 3. Scale the flag when hovering over any option inside the menu */
+.dropdown-item:hover .flag-img {
+  transform: scale(1.15);
 }
 
 /* ==========================================================================
@@ -159,42 +216,6 @@ button.home-link:hover {
    ========================================================================== */
 @media (max-width: 768px) {
   .main-header {
-    flex-wrap: wrap; /* Allows children to drop to the next line */
     padding: 1rem;
-  }
-
-  /* Force the navigation to drop to the bottom and take full width */
-  .header-center {
-    order: 3; /* Places it after header-left and header-right */
-    width: 100%;
-    margin-top: 1rem;
-    justify-content: space-around; /* Spreads out the links nicely */
-    gap: 0.5rem;
-
-    /* Optional: allows horizontal scrolling if links get too squished on very small phones */
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 0.5rem;
-  }
-
-  .header-center a {
-    font-size: 0.9rem; /* Slightly smaller text for mobile */
-  }
-
-  /* Keep left and right sections on the top row */
-  .header-left,
-  .home-link {
-    order: 1;
-  }
-
-  .header-right {
-    order: 2;
-  }
-}
-
-/* Very Small Devices (e.g., iPhone SE) */
-@media (max-width: 400px) {
-  .header-center {
-    justify-content: flex-start; /* Switch to scrolling rather than squishing */
   }
 }

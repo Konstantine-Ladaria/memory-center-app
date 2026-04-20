@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
-
-// Import your services and models
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from '../../services/project-service';
 import { Project } from '../../../../core/models/project.model';
 import { PublicationService } from '../../../publications/services/publication.service';
 import { Publication } from '../../../../core/models/publication.model';
-
-// IMPORTANT: Import the CmsCitationPipe we built!
 import { cmsCitation } from '../../../../shared/pipes/cms-citation.pipe';
 import { ResearcherCardComponent } from '../../../../shared/components/researcher-card/researcher-card.component';
 
@@ -22,14 +18,16 @@ import { ResearcherCardComponent } from '../../../../shared/components/researche
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.css'],
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, OnDestroy {
   project?: Project;
-  lang: string = 'ka';
+  currentLang: string = 'ka';
+  private langSub!: Subscription;
 
   // 1. Create a variable to hold the publications stream
   publications$!: Observable<Publication[]>;
 
   constructor(
+    private translate: TranslateService,
     private route: ActivatedRoute,
     private projectService: ProjectService,
     // 2. Inject the Publication Service
@@ -37,6 +35,11 @@ export class ProjectDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang() || 'ka';
+    this.langSub = this.translate.onLangChange.subscribe((event) => {
+      this.currentLang = event.lang;
+    });
+
     // 3. Get the project ID from the URL
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -52,8 +55,14 @@ export class ProjectDetailComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.langSub) {
+      this.langSub.unsubscribe();
+    }
+  }
+
   getLocalized(obj: any): string {
     if (!obj) return '';
-    return obj[this.lang] || obj['en'] || '';
+    return obj[this.currentLang] || obj['en'] || '';
   }
 }
