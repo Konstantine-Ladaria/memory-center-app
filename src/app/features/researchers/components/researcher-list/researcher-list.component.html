@@ -3,7 +3,7 @@
     <h2 class="group-title">{{ 'RESEARCHERS.CORE_MEMBERS' | translate }}</h2>
 
     <div class="grid">
-      <app-researcher-card *ngFor="let member of coreMembers$ | async" [researcherId]="member.id">
+      <app-researcher-card *ngFor="let member of coreMembers$ | async" [researcher]="member">
       </app-researcher-card>
     </div>
   </section>
@@ -14,7 +14,7 @@
     <div class="grid">
       <app-researcher-card
         *ngFor="let collaborator of collaborators$ | async"
-        [researcherId]="collaborator.id"
+        [researcher]="collaborator"
       >
       </app-researcher-card>
     </div>

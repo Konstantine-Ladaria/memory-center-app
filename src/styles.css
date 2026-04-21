@@ -7,15 +7,15 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  padding-top: 80px;
+  /* 50px upper + 80px lower = 130px Bumper */
+  padding-top: 60px;
   display: flex;
 }
 app-root {
   display: block;
   width: 100%;
   overflow-x: hidden;
-  position: relative;
-  top: -70px;
+  /* REMOVED position: relative and top: -70px entirely! */
 }
 
 :root {

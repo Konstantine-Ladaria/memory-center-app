@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-hamburger-menu',
@@ -13,6 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
 export class HamburgerMenuComponent {
   isOpen = false;
   currentLang: string = 'ka';
+
+  constructor(public themeService: ThemeService) {}
 
   toggleMenu() {
     this.isOpen = !this.isOpen;

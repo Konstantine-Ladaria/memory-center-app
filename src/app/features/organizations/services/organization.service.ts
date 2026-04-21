@@ -74,4 +74,12 @@ export class OrganizationService {
     const filtered = this.mockOrganizations.filter((org) => org.relationType === type);
     return of(filtered);
   }
+
+  getOrganizationById(id: string): Observable<Organization | undefined> {
+    // Finds the organization in your array that matches the ID
+    const foundOrg = this.mockOrganizations.find((org) => org.id === id);
+
+    // Returns it as an Observable so your component can subscribe to it
+    return of(foundOrg);
+  }
 }

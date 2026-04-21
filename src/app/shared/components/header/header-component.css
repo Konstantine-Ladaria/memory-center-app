@@ -1,136 +1,106 @@
 /* ==========================================================================
-   Header Host & Sticky Behavior
+   1. Host Wrapper (The Absolute Anchor)
    ========================================================================== */
-/* We target the custom <app-header> element itself to make it stick to the top */
 :host {
-  position: fixed; /* Changed from sticky */
-  top: 0;
-  left: 0; /* Added to ensure it aligns perfectly */
-  width: 100%; /* Added so it stretches across the screen */
-  z-index: 9999;
   display: block;
+  position: absolute;
+  top: 0 !important; /* Ignores global body padding */
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 /* ==========================================================================
-   Main Header Animation
+   2. Upper Header (Utility Bar - 50px)
    ========================================================================== */
-
-/* The class Angular applies when scrolling down */
-.main-header.header-hidden {
-  /* Slides the header exactly 100% of its height upwards off the screen */
-  transform: translateY(-100%);
-
-  /* Optional: Add a slight box-shadow dropoff for an extra premium feel */
-  box-shadow: none;
-}
-.main-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.upper-header {
+  width: 100%;
+  height: 50px;
   background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  z-index: 1000;
-  min-height: auto; /* Remove any hardcoded heights if they exist */
-  padding-bottom: 0.7rem;
-  padding-top: 0.7rem;
-  filter: brightness(1.2);
-  transition:
-    transform 0.3s ease-in-out,
-    background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
+
+.parent-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.parent-brand-link:hover {
+  opacity: 0.8;
+}
+
+.parent-logo {
+  height: 32px; /* Fits perfectly inside the 50px header */
+  width: auto;
+  object-fit: contain;
+}
+
+span.parent-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   3. Lower Header (Primary Navigation - 80px)
+   ========================================================================== */
+.lower-header {
+  /* Default State (Scrolling Up) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--bg-surface);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  box-shadow: var(--shadow-sm);
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+/* State 1: At the very top */
+.lower-header.at-top {
+  position: absolute;
+  top: 50px; /* Matches the height of the upper-header exactly */
+  box-shadow: none; /* Removes shadow when resting flat */
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* State 2: Scrolling down past the threshold */
+.lower-header.hidden {
+  position: fixed;
+  top: -100px; /* Slides out of view */
+}
+
+/* ==========================================================================
+   4. Inner Layout & Branding
+   ========================================================================== */
 .header-left,
-.header-center,
 .header-right {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-.parent-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.parent-brand a {
-  text-decoration: none;
-  color: var(--text-muted);
-}
-
-.parent-brand a:hover {
-  text-decoration: underline;
-  color: var(--link-hover);
-}
-
-.theme-toggle-btn {
-  background-color: var(--bg-surface);
-  border: 0px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-xs) var(--space-sm);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-theme);
-  height: 40px; /* Gives a consistent clickable area */
-  min-width: 50px;
-}
-.theme-toggle-btn:hover {
-  background-color: var(--bg-surface-hover);
-}
-.brand-link {
-  text-decoration: none;
-  margin-bottom: var(--space-sm);
-}
-
-.brand-title {
-  display: block;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-size-lg);
-  color: var(--color-brand-accent); /* Uses your Crimson red to draw the eye */
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  white-space: pre-wrap;
-  line-height: 1.2;
-}
-/* ==========================================================================
-   Parent Organization Logo
-   ========================================================================== */
-.parent-logo-link {
-  display: flex;
-  align-items: center;
-  transition: opacity 0.2s ease;
-}
-
-.parent-logo-link:hover {
-  opacity: 0.8; /* Subtle hover effect so users know it is clickable */
-}
-
-.parent-logo {
-  height: 50px; /* Adjust this number to perfectly fit your specific header height */
-  width: auto;
-  object-fit: contain; /* Ensures the logo never stretches or squishes */
-}
-/* ==========================================================================
-   Header Left Section (Logo Container)
-   ========================================================================== */
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; /* Adds breathing room between the logos and the divider */
-}
-
-/* ==========================================================================
-   Main Center Logo
-   ========================================================================== */
 .brand-logo-link {
   display: flex;
   align-items: center;
+  gap: 1rem; /* Adds breathing room between the logo and text */
+  text-decoration: none; /* Prevents an ugly blue underline on the text */
   transition: opacity 0.2s ease;
 }
 
@@ -139,83 +109,58 @@
 }
 
 .brand-logo {
-  /* It is usually best to make your center's logo slightly larger or equal 
-     in height to the parent logo */
-  height: 50px;
+  height: 70px;
   width: auto;
   object-fit: contain;
 }
 
 /* ==========================================================================
-   Logo Divider
+   5. Interactive Controls (Theme Toggle)
    ========================================================================== */
-.logo-divider {
-  height: 35px; /* Slightly shorter than the logos */
-  width: 1px;
-  background-color: var(--border-subtle); /* Uses your existing light/dark theme border */
-  margin: 0 0.75rem;
-}
-
-/* ==========================================================================
-   Parent Organization Logo (Keep your existing styles!)
-   ========================================================================== */
-.parent-logo-link {
-  display: flex;
-  align-items: center;
-  transition: opacity 0.2s ease;
-}
-
-.parent-logo-link:hover {
-  opacity: 0.8;
-}
-
-.parent-logo {
-  height: 50px; /* Keeping this slightly smaller establishes visual hierarchy */
-  width: auto;
-  object-fit: contain;
-}
-
 .theme-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none;
+  border-radius: var(--radius-md);
   color: var(--text-main);
   cursor: pointer;
-  padding: 8px; /* Adds a nice clickable area around the icon */
+  padding: 8px;
+  transition: background-color 0.2s ease;
 }
 
-/* Optional: Make the icon change smoothly */
+.theme-toggle-btn:hover {
+  background-color: var(--bg-surface-hover);
+}
+
 .theme-toggle-btn .material-symbols-outlined {
-  transition: transform 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 .theme-toggle-btn:hover .material-symbols-outlined {
-  transform: scale(1.1); /* Slight pop effect when hovering */
-}
-
-/* 1. Add a smooth transition to the base flag image */
-.flag-img {
-  transition: transform 0.2s ease-in-out;
-  /* Ensure your flags have a set width/height here if they don't already! */
-}
-
-/* 2. Scale the flag when hovering over the main trigger button */
-.dropdown-trigger:hover .flag-img {
-  transform: scale(1.15); /* Expands it by 15% */
-}
-
-/* 3. Scale the flag when hovering over any option inside the menu */
-.dropdown-item:hover .flag-img {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 /* ==========================================================================
-   Mobile Header Layout (Screens < 768px)
+   6. Mobile Responsiveness (< 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-  .main-header {
-    padding: 1rem;
+  .upper-header {
+    padding: 0 1rem;
+    justify-content: center; /* Centers parent logo on mobile */
+  }
+
+  .lower-header {
+    padding: 0 1rem;
+    height: 70px;
+  }
+
+  .brand-logo {
+    height: 35px; /* Shrink center logo slightly */
+  }
+
+  .header-right {
+    gap: 0.5rem;
   }
 }

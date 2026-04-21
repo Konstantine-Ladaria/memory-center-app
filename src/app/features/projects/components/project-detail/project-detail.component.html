@@ -183,21 +183,28 @@
         "
       >
         <h3>{{ 'DETAIL.RESEARCH_TEAM' | translate }}</h3>
-        <div class="team-grid">
+        <div class="team-list">
           <ng-container *ngIf="project.principalInvestigatorId">
-            <div class="pi-label">{{ 'DETAIL.PRINCIPAL_INVESTIGATOR' | translate }}</div>
+            <div class="role-label">{{ 'DETAIL.PRINCIPAL_INVESTIGATOR' | translate }}</div>
             <app-researcher-card
               [researcherId]="project.principalInvestigatorId"
+              layout="compact"
             ></app-researcher-card>
           </ng-container>
 
           <ng-container *ngIf="project.coordinatorId">
-            <div class="pi-label">{{ 'DETAIL.PROJECT_COORDINATOR' | translate }}</div>
-            <app-researcher-card [researcherId]="project.coordinatorId"></app-researcher-card>
+            <div class="role-label">{{ 'DETAIL.PROJECT_COORDINATOR' | translate }}</div>
+            <app-researcher-card
+              [researcherId]="project.coordinatorId"
+              layout="compact"
+            ></app-researcher-card>
           </ng-container>
 
-          <ng-container *ngFor="let memberId of project.teamMemberIds">
-            <app-researcher-card [researcherId]="memberId"></app-researcher-card>
+          <ng-container *ngIf="project.teamMemberIds && project.teamMemberIds.length > 0">
+            <div class="role-label">{{ 'DETAIL.TEAM_MEMBERS' | translate }}</div>
+            <ng-container *ngFor="let memberId of project.teamMemberIds">
+              <app-researcher-card [researcherId]="memberId" layout="compact"></app-researcher-card>
+            </ng-container>
           </ng-container>
         </div>
       </section>

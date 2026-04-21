@@ -36,5 +36,6 @@ export interface Researcher {
   academiaUrl?: string;
 
   // --- Relational Data ---
+  parentOrganizationId?: string;
   publicationIds?: string[];
 }

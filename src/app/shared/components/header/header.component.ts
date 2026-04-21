@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private langChangeSub!: Subscription;
   parentOrg$!: Observable<Organization | undefined>;
   isHidden = false;
+  isAtTop = true; // New variable to track if we are at the very top
   private lastScrollTop = 0;
 
   constructor(
@@ -54,15 +55,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('window:scroll')
+  @HostListener('window:scroll', [])
   onWindowScroll() {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (currentScroll <= 50) {
-      this.isHidden = false;
-    } else if (currentScroll > this.lastScrollTop) {
+    // 1. Check if we are at the very top (Assuming upper header is 40px tall)
+    this.isAtTop = currentScroll <= 50;
+
+    // 2. Determine if we should hide the lower header
+    if (currentScroll > this.lastScrollTop && currentScroll > 100) {
+      // Scrolling down & past the top area
       this.isHidden = true;
     } else {
+      // Scrolling up
       this.isHidden = false;
     }
 
