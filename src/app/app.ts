@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { BreadcrumbsComponent } from './shared/components/breadcrumbs/breadcrumbs.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { LanguageService } from './core/services/language/language.service';
 
 @Component({
-  selector: 'app-root', // This should match the tag in your main index.html
+  selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, BreadcrumbsComponent, FooterComponent],
   template: `
@@ -18,4 +19,12 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   `,
   styleUrls: ['./app.css'],
 })
-export class App {}
+export class App implements OnInit {
+  // <-- Just changed to AppComponent
+
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit(): void {
+    this.languageService.initLanguage();
+  }
+}
